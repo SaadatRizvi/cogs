@@ -18,11 +18,7 @@ const projects = sequelize.define('Projects', {
     },
     leavingDate: {
         type: Sequelize.DATEONLY
-    },
-
-    empCode: {
-        type: Sequelize.INTEGER
-    },
+    }
 },{
     timestamps: false,
     freezeTableName:true

@@ -18,11 +18,7 @@ const employments = sequelize.define('Employments', {
     },
     leavingDate: {
         type: Sequelize.DATEONLY
-    },
-
-    empCode: {
-        type: Sequelize.INTEGER
-    },
+    }
 },{
     timestamps: false,
     freezeTableName:true
@@ -32,18 +28,19 @@ employee.hasMany(employments)
 employments.belongsTo(employee)
 
 // force: true will drop the table if it already exists
-employments.sync({force: false}).then(() => {
-    // Table created
-    return employments.create({
-        company:'ddcdsdsn.s.d.ds',
-        title: 'sddsdsd',
-        location: '1@gmail.com',
-        joiningDate: '2014-05-04',
-        leavingDate: '2015-04-04',
-        empCode: 1312,
-
-    }).then(function (done) {
-
-    });
-});
+employments.sync({force: false})
+//     .then(() => {
+//     // Table created
+//     return employments.create({
+//         company:'ddcdsdsn.s.d.ds',
+//         title: 'sddsdsd',
+//         location: '1@gmail.com',
+//         joiningDate: '2014-05-04',
+//         leavingDate: '2015-04-04',
+//         empCode: 1312,
+//
+//     }).then(function (done) {
+//
+//     });
+// });
 sequelize.sync();

@@ -11,12 +11,15 @@ const Department = sequelize.define('Departments', {
     timestamps: false,
     freezeTableName:true
 });
-Department.sync({force: false}).then(() => {
-    // Table created
-    return Department.create({
-        name: 'Development'
+Department.sync({force: false})
+//     .then(() => {
+//     // Table created
+//     return Department.create({
+//         name: 'Development'
+//
+//     });
+// });
 
-    });
-});
+exports.departments=Department;
 
 

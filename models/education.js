@@ -18,11 +18,7 @@ const education = sequelize.define('Education', {
     },
     gpa: {
         type: Sequelize.FLOAT
-    },
-
-    empCode: {
-        type: Sequelize.INTEGER
-    },
+    }
 },{
     timestamps: false,
     freezeTableName:true
@@ -32,18 +28,19 @@ employee.hasMany(education)
 education.belongsTo(employee)
 
 // force: true will drop the table if it already exists
-education.sync({force: false}).then(() => {
-    // Table created
-    return education.create({
-        institute:'ddcdsdsn.s.d.ds',
-        gpa: 3.96,
-        degree: '1@gmail.com',
-        passingDate: '2014-05-04',
-        field: '2015-04-04',
-        empCode: 1312,
-
-    }).then(function (done) {
-
-    });
-});
+education.sync({force: false})
+//     .then(() => {
+//     // Table created
+//     return education.create({
+//         institute:'ddcdsdsn.s.d.ds',
+//         gpa: 3.96,
+//         degree: '1@gmail.com',
+//         passingDate: '2014-05-04',
+//         field: '2015-04-04',
+//         empCode: 1312,
+//
+//     }).then(function (done) {
+//
+//     });
+// });
 sequelize.sync();

@@ -37,3 +37,5 @@ address.sync({force: false})
 //     });
 // });
 sequelize.sync();
+
+exports.addressModel=address;

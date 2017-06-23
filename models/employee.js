@@ -1,8 +1,9 @@
 const db=require('../db');
 const Sequelize=require('sequelize');
-
 const sequelize=db.sequelize;
-const Employee = sequelize.define('Employees', {
+const departments=require('./department').departments;
+
+const employee = sequelize.define('Employees', {
     code: {
         type: Sequelize.INTEGER, unique: true
     },
@@ -26,9 +27,6 @@ const Employee = sequelize.define('Employees', {
     },
     maritalStatus: {
         type: Sequelize.STRING
-    },
-    departmentId: {
-        type: Sequelize.INTEGER
     },
     manager: {
         type: Sequelize.STRING
@@ -57,26 +55,29 @@ const Employee = sequelize.define('Employees', {
     freezeTableName:true
 });
 
+departments.hasMany(employee);
+employee.belongsTo(departments);
 // force: true will drop the table if it already exists
-Employee.sync({force: false}).then(() => {
-    // Table created
-    return Employee.create({
-        code: 1312,
-        name: 'Hancock',
-        designation: 'Manager',
-        email: 'manager@tenpearls.com',
-        tenure: 0.2,
-        gender: 'm',
-        dob: '1991-02-01',
-        maritalStatus: 'single',
-        departmentId: 1,
-        joiningDate: '2017-05-22',
-        status: 'Permanent',
-        seatNo: '202A',
-        password: '12345678',
-        active: true
-
-    });
-});
+employee.sync({force: false})
+//     .then(() => {
+//     // Table created
+//     return employee.create({
+//         code: 1312,
+//         name: 'Hancock',
+//         designation: 'Manager',
+//         email: 'manager@tenpearls.com',
+//         tenure: 0.2,
+//         gender: 'm',
+//         dob: '1991-02-01',
+//         maritalStatus: 'single',
+//         departmentId: 1,
+//         joiningDate: '2017-05-22',
+//         status: 'Permanent',
+//         seatNo: '202A',
+//         password: '12345678',
+//         active: true
+//
+//     });
+// });
 
 exports.employee=Employee;
