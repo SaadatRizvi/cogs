@@ -1,7 +1,7 @@
 const db=require('../db');
 const Sequelize=require('sequelize');
 const sequelize=db.sequelize;
-const departments=require('./department').departments;
+const departments=require('./departmentsModel').departments;
 
 const employee = sequelize.define('Employees', {
     code: {
