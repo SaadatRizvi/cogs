@@ -75,17 +75,17 @@ class DepartmentModel{
             )
     };
     deleteByID(id) {
-        return
-        this.Department.destroy({
+        return this.Department.destroy({
             where: {
                 id: id
             }
-        }).then(result => result);
+        }).then(result =>
+        {return result;}
+        );
     };
 
     deleteByName(name) {
-        return
-        this.Department.destroy({
+        return this.Department.destroy({
             where: {
                 name: name
             }
