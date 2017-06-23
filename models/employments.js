@@ -1,7 +1,8 @@
 const db=require('../db');
 const Sequelize=require('sequelize');
-
 const sequelize=db.sequelize;
+const employee=require('./employee.js').employee
+
 const employments = sequelize.define('Employments', {
     company: {
         type: Sequelize.STRING
@@ -26,6 +27,9 @@ const employments = sequelize.define('Employments', {
     timestamps: false,
     freezeTableName:true
 });
+
+employee.hasMany(employments)
+employments.belongsTo(employee)
 
 // force: true will drop the table if it already exists
 employments.sync({force: false}).then(() => {

@@ -78,3 +78,5 @@ Employee.sync({force: false}).then(() => {
 
     });
 });
+
+exports.employee=Employee;

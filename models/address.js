@@ -1,6 +1,6 @@
 const db=require('../db');
 const Sequelize=require('sequelize');
-
+const employee=require('./employee.js').employee
 const sequelize=db.sequelize;
 const address = sequelize.define('Address', {
     street: {
@@ -19,19 +19,21 @@ const address = sequelize.define('Address', {
     timestamps: false,
     freezeTableName:true
 });
-
+employee.hasMany(address)
+address.belongsTo(employee)
 // force: true will drop the table if it already exists
-address.sync({force: false}).then(() => {
-    // Table created
-    return address.create({
-        street:'ddcdsdsn.s.d.ds',
-        city: 'kAsrwfsh',
-        country: '1@gmail.com',
-        type: '021165165',
-        empCode: 1312,
-
-    }).then(function (done) {
-        console.log(done)
-    });
-});
+address.sync({force: false})
+// .then(() => {
+//     // Table created
+//     return address.create({
+//         street:'ddcdsdsn.s.d.ds',
+//         city: 'kAsrwfsh',
+//         country: '1@gmail.com',
+//         type: '021165165',
+//         empCode: 1312,
+//
+//     }).then(function (done) {
+//         console.log(done)
+//     });
+// });
 sequelize.sync();
