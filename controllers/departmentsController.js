@@ -4,8 +4,8 @@
 const express = require('express');
 const router = express.Router();
 
-
 const departmentsModel= require('../models/departmentsModel');
+const departmentsServices=require('../services/departmentsServices');
 let validator;
 
 
@@ -14,7 +14,7 @@ module.exports.construct = function (body_parser) {
     //getting validator from app.js
     validator=module.exports.validator;
 
-
+    router.get('/',departmentsServices.getAll())
     router.get('/', function(req, res) {
         console.log("Entered GET departments")
         departmentsModel.getAll().then(function (result) {
