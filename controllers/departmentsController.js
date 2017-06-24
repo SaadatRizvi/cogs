@@ -13,80 +13,21 @@ module.exports.construct = function (body_parser) {
 
     //getting validator from app.js
     validator=module.exports.validator;
+    departmentsServices.validator=validator;
 
-    router.get('/',departmentsServices.getAll())
-    router.get('/', function(req, res) {
-        console.log("Entered GET departments")
-        departmentsModel.getAll().then(function (result) {
-            console.log("Entered Ended departments")
-            res.send(result)
-        });
-    });
-    router.get('/:id', function(req, res) {
-        if(!validator.isInt(req.params.id)){
-            res.send({Message :"ID \'"+ req.params.id+"\' not in the correct format"})
-        }
-        console.log("Entered GET departments")
-        departmentsModel.getByID(req.params.id).then(function (result) {
-            console.log("Entered Ended departments")
-            res.send(result)
-        });
-    });
+    router.get('/',departmentsServices.getAll());
 
-    router.get('/:name', function(req, res) {
-        if(!validator.isAlpha(req.params.name)){
-            res.send({Message :"Name \'"+ req.params.name+"\' not in the correct format"})
-        }
-        console.log("Entered GET departments")
-        departmentsModel.getByID(req.params.name).then(function (result) {
-            console.log("Entered Ended departments")
-            res.send(result)
-        });
-    });
+    router.get('/:id',departmentsServices.getById());
 
+    router.get('/:name',departmentsServices.getByName());
 
+    router.post('/', departmentsServices.set());
 
-    router.post('/', function(req, res) {
+    router.delete('/:id', departmentsServices.deleteById());
 
-        console.log(req.body);
-        departmentsModel.create(req.body).then(function (result) {
-            res.send(result)
-        });
-    });
+    router.delete('/:name', departmentsServices.deleteByName());
 
-    router.delete('/:id', function(req, res) {
-        if(!validator.isInt(req.params.id)){
-            res.send({Message :"ID \'"+ req.params.id+"\' not in the correct format"})
-        }
-
-        departmentsModel.deleteByID(req.params.id).then(function (result) {
-            res.send(result)
-        });
-    });
-
-    router.delete('/:name', function(req, res) {
-        if(!validator.isAlpha(req.params.name)){
-            res.send({Message :"Name \'"+ req.params.name+"\' not in the correct format"})
-        }
-        departmentsModel.deleteByName(req.params.name).then(function (result) {
-            res.send(result)
-        });
-    });
-
-    router.put('/:id', function(req, res) {
-        if(!validator.isInt(req.params.id)){
-            res.send({Message :"ID \'"+ req.params.id+"\' not in the correct format"})
-        }
-
-        departmentsModel.update(req.body,req.params.id).then(function (result) {
-            res.send(result)
-        });
-    });
-
-
-
-
-
+    router.put('/:id', departmentsServices.update());
 };
 
 module.exports.router = router;

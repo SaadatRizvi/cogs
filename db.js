@@ -1,6 +1,6 @@
 const Sequelize=require('sequelize');
 
-    const sequelize = new Sequelize('cogsDBNEW', 'root', 'root', {
+    const sequelize = new Sequelize('cogsdbnew', 'root', 'root', {
         host: 'localhost',
         port: 3306,
         dialect: 'mysql',
