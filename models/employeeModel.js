@@ -15,19 +15,19 @@ class EmployeeModel{
 
         this.Employee  = sequelize.define('Employees', {
             code: {
-                type: Sequelize.INTEGER, unique: true
+                type: Sequelize.INTEGER, unique: true, allowNull: false
             },
             name: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             designation: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             email: {
-                type: Sequelize.STRING, unique: true
+                type: Sequelize.STRING, unique: true, allowNull: false
             },
             tenure: {
-                type: Sequelize.FLOAT
+                type: Sequelize.FLOAT, allowNull: false
             },
             gender: {
                 type: Sequelize.STRING
@@ -42,22 +42,22 @@ class EmployeeModel{
                 type: Sequelize.STRING
             },
             joiningDate: {
-                type: Sequelize.DATEONLY
+                type: Sequelize.DATEONLY, allowNull: false
             },
             lastDate: {
                 type: Sequelize.DATEONLY
             },
             status: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             seatNo: {
                 type: Sequelize.STRING, unique: true
             },
             password: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             active: {
-                type: Sequelize.BOOLEAN
+                type: Sequelize.BOOLEAN, allowNull: false
             }
 
         },{

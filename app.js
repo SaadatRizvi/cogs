@@ -8,14 +8,6 @@ const bodyParser = require('body-parser');
 const db=require('./db');
 const validator = require('validator');
 
-
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
-
 function isDate(testDate) {
     //var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
     var date_regex = /^(19|20)\d{2}\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])$/;
@@ -24,10 +16,20 @@ function isDate(testDate) {
     {
         return false;
     }
-    return true;
+    return true
 }
 
 validator.isDateNS=isDate;
+
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+
 
 const departments=require('./controllers/departmentController');
 const employees=require('./controllers/employeeController');
@@ -52,11 +54,14 @@ contactDetail.construct(bodyParser);
 education.validator = validator;
 education.construct(bodyParser);
 
-app.use('/departments', departments.router)
-app.use('/employees', employees.router)
-app.use('/address', address.router)
-app.use('/contactDetail', contactDetail.router)
-app.use('/education', education.router)
+app.use('/departments', departments.router);
+app.use('/employees', employees.router);
+app.use('/address', address.router);
+app.use('/contactDetail', contactDetail.router);
+app.use('/education', education.router);
+app.use('/employments', employments.router);
+app.use('/projects', projects.router);
+
 
 app.get("/", function (request,response) {
         response.send('Hello World');
