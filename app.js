@@ -28,13 +28,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+
+
+
 const departments=require('./controllers/departmentController');
 const employees=require('./controllers/employeeController');
 const employments=require('./controllers/employmentController');
 const projects=require('./controllers/projectController');
-
-
-
+const address=require('./controllers/addressController');
+const contactDetail=require('./controllers/contactDetailController');
+const education=require('./controllers/educationController');
 
 departments.validator = validator;
 departments.construct(bodyParser);
@@ -44,12 +47,21 @@ employments.validator = validator;
 employments.construct(bodyParser);
 projects.validator = validator;
 projects.construct(bodyParser);
+address.validator = validator;
+address.construct(bodyParser);
+contactDetail.validator = validator;
+contactDetail.construct(bodyParser);
+education.validator = validator;
+education.construct(bodyParser);
 
+app.use('/departments', departments.router);
+app.use('/employees', employees.router);
+app.use('/address', address.router);
+app.use('/contactDetail', contactDetail.router);
+app.use('/education', education.router);
+app.use('/employments', employments.router);
+app.use('/projects', projects.router);
 
-app.use('/departments', departments.router)
-app.use('/employees', employees.router)
-app.use('/employments', employments.router)
-app.use('/projects', projects.router)
 
 app.get("/", function (request,response) {
         response.send('Hello World');
