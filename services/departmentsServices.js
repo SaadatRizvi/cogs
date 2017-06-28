@@ -1,3 +1,6 @@
+'use strict';
+
+
 const departmentsModel= require('../models/departmentsModel');
 //const validator=module.exports.validator;
 
