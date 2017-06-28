@@ -6,16 +6,12 @@ const Sequelize=require('sequelize');
 
 const sequelize=db.sequelize;
 
-var validator = require('validator');
-
 
 class DepartmentModel{
 
 
     constructor(){
 
-
-        console.log(validator)
 
       this.Department  = sequelize.define('Departments', {
 

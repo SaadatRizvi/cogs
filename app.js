@@ -15,13 +15,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
-const departments=require('./controllers/departmentsController');
+const departments=require('./controllers/departmentController');
+const employees=require('./controllers/employeeController');
+const employments=require('./controllers/employmentController');
+const projects=require('./controllers/projectController');
+
 
 
 
 departments.validator = validator;
 departments.construct(bodyParser);
+employees.validator = validator;
+employees.construct(bodyParser);
+employments.validator = validator;
+employments.construct(bodyParser);
+projects.validator = validator;
+projects.construct(bodyParser);
+
+
 app.use('/departments', departments.router)
+app.use('/employees', employees.router)
 
 app.get("/", function (request,response) {
         response.send('Hello World');

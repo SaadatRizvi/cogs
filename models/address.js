@@ -1,6 +1,6 @@
 const db=require('../db');
 const Sequelize=require('sequelize');
-const employee=require('./employee.js').employee
+const employee=require('./employeeModel.js').employee
 const sequelize=db.sequelize;
 const address = sequelize.define('Address', {
     street: {

@@ -4,8 +4,8 @@
 const express = require('express');
 const router = express.Router();
 
-const departmentsModel= require('../models/departmentsModel');
-const departmentsServices=require('../services/departmentsServices');
+const departmentsModel= require('../models/departmentModel');
+const departmentsServices=require('../services/departmentServices');
 let validator;
 
 
