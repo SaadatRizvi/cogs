@@ -3,7 +3,7 @@
 
 const db=require('../db');
 const Sequelize=require('sequelize');
-const employee=require('./employee.js').employee;
+const employee=require('./employeeModel.js').Employee;
 const sequelize=db.sequelize;
 
 class AddressModel{
@@ -11,27 +11,27 @@ class AddressModel{
 
     constructor(){
 
-        this.address = sequelize.define('Address', {
+        this.Address = sequelize.define('Address', {
             street: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING ,allowNull:false
             },
             city: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING ,allowNull:false
             },
             country: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING ,allowNull:false
             },
             type: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING ,allowNull:false
             }
         },{
             timestamps: false,
             freezeTableName:true
         });
-        employee.hasMany(this.address);
-        this.address.belongsTo(employee);
+        employee.hasMany(this.Address);
+        this.Address.belongsTo(employee);
 
-        this.address.sync({force: false}).then(function () {
+        this.Address.sync({force: false}).then(function () {
             console.log('Departments Table created')
         });
     }
@@ -41,8 +41,8 @@ class AddressModel{
         delete defaultVals.EmployeeID;
         delete defaultVals.type;
 
-        return this.address
-            .findOrCreate({where: {EmployeeID: data.EmployeeID,type: data.type},defaults:defaultVals})
+        return this.Address
+            .findOrCreate({where: {EmployeeId: data.EmployeeId,type: data.type},defaults:defaultVals})
             .spread((address, created) => {
                 console.log(address.get({
                     plain: true
@@ -52,19 +52,19 @@ class AddressModel{
             })};
 
     getAll() {
-        return this.address
+        return this.Address
             .findAll().then(function(output){
                 return output;
             });
     };
     getByID(id){
-        return this.address
+        return this.Address
             .findById(id).then(address => {
                 return address;
             })
     };
     update(data,id) {
-        return this.address.update(
+        return this.Address.update(
             data,
             {where: {id: id}}
         )
@@ -77,7 +77,7 @@ class AddressModel{
             )
     };
     deleteByID(id) {
-        return this.address.destroy({
+        return this.Address.destroy({
             where: {
                 id: id
             }

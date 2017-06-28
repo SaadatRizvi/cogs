@@ -3,25 +3,25 @@
 const db=require('../db');
 const Sequelize=require('sequelize');
 const sequelize=db.sequelize;
-const employee=require('./employee.js').employee;
+const employee=require('./employeeModel.js').Employee;
 
 class EducationModel{
 
 
     constructor(){
 
-        this.education = sequelize.define('Education', {
+        this.Education = sequelize.define('Education', {
             institute: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,allowNull:false
             },
             passingDate: {
-                type: Sequelize.DATEONLY
+                type: Sequelize.DATEONLY,allowNull:false
             },
             degree: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,allowNull:false
             },
             field: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,allowNull:false
             },
             gpa: {
                 type: Sequelize.FLOAT
@@ -31,21 +31,35 @@ class EducationModel{
             freezeTableName:true
         });
 
-        employee.hasMany(this.education)
-        this.education.belongsTo(employee)
+        employee.hasMany(this.Education)
+        this.Education.belongsTo(employee)
 
 // force: true will drop the table if it already exists
-        this.education.sync({force: false}).then(function () {
+        this.Education.sync({force: false}).then(function () {
             console.log('Departments Table created')
         });
     }
 
     create(data){
+        console.log('In Create 1')
+
         let defaultVals =Object.assign({}, data);
         delete defaultVals.EmployeeID;
         delete defaultVals.degree;
-        return this.education
-            .findOrCreate({where: {EmployeeID: data.EmployeeID,degree:data.degree},defaults:defaultVals})
+        delete defaultVals.passingDate;
+        delete defaultVals.field
+        console.log('In Create 2')
+        return this.Education
+            .findOrCreate(
+                {
+                    where:
+                {
+                    EmployeeId: data.EmployeeId,
+                    degree:data.degree,
+                    passingDate:data.passingDate,
+                    field:data.field
+                },
+                    defaults:defaultVals})
             .spread((education, created) => {
                 console.log(education.get({
                     plain: true
@@ -55,19 +69,19 @@ class EducationModel{
             })};
 
     getAll() {
-        return this.education
+        return this.Education
             .findAll().then(function(output){
                 return output;
             });
     };
     getByID(id){
-        return this.education
+        return this.Education
             .findById(id).then(education => {
                 return education;
             })
     };
     update(data,id) {
-        return this.education.update(
+        return this.Education.update(
             data,
             {where: {id: id}}
         )
@@ -80,7 +94,7 @@ class EducationModel{
             )
     };
     deleteByID(id) {
-        return this.education.destroy({
+        return this.Education.destroy({
             where: {
                 id: id
             }

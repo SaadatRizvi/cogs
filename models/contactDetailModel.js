@@ -4,19 +4,19 @@
 const db=require('../db');
 const Sequelize=require('sequelize');
 const sequelize=db.sequelize;
-const employee=require('./employee.js').employee;
+const employee=require('./employeeModel.js').Employee;
 
 class ContactModel{
 
 
     constructor(){
 
-        this.contactDetails = sequelize.define('ContactDetails', {
+        this.ContactDetails = sequelize.define('ContactDetails', {
             cnic: {
-                type: Sequelize.STRING, unique: true
+                type: Sequelize.STRING, unique: true,allowNull:false
             },
             personalEmail: {
-                type: Sequelize.STRING, unique: true
+                type: Sequelize.STRING, unique: true,allowNull:false
             },
             skype: {
                 type: Sequelize.STRING, unique: true
@@ -25,19 +25,19 @@ class ContactModel{
                 type: Sequelize.STRING, unique: true
             },
             mobileNumber: {
-                type: Sequelize.STRING, unique: true
+                type: Sequelize.STRING, unique: true,allowNull:false
             },
             emergencyName: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,allowNull:false
             },
             emergencyRelation: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,allowNull:false
             },
             emergencyNumber: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,allowNull:false
             },
             emergencyAddress: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,allowNull:false
             },
         },{
             timestamps: false,
@@ -45,11 +45,11 @@ class ContactModel{
         });
 
 
-        employee.hasMany(this.contactDetails)
-        this.contactDetails.belongsTo(employee)
+        employee.hasMany(this.ContactDetails)
+        this.ContactDetails.belongsTo(employee)
 
 // force: true will drop the table if it already exists
-        this.contactDetails.sync({force: false}).then(function () {
+        this.ContactDetails.sync({force: false}).then(function () {
             console.log('Departments Table created')
         });
     }
@@ -57,8 +57,8 @@ class ContactModel{
     create(data){
         let defaultVals =Object.assign({}, data);
         delete defaultVals.EmployeeID;
-        return this.contactDetails
-            .findOrCreate({where: {EmployeeID: data.EmployeeID},defaults:defaultVals})
+        return this.ContactDetails
+            .findOrCreate({where: {EmployeeId: data.EmployeeId},defaults:defaultVals})
             .spread((contactDetails, created) => {
                 console.log(contactDetails.get({
                     plain: true
@@ -68,19 +68,19 @@ class ContactModel{
             })};
 
     getAll() {
-        return this.contactDetails
+        return this.ContactDetails
             .findAll().then(function(output){
                 return output;
             });
     };
     getByID(id){
-        return this.contactDetails
+        return this.ContactDetails
             .findById(id).then(contactDetails => {
                 return contactDetails;
             })
     };
     update(data,id) {
-        return this.contactDetails.update(
+        return this.ContactDetails.update(
             data,
             {where: {id: id}}
         )
@@ -93,7 +93,7 @@ class ContactModel{
             )
     };
     deleteByID(id) {
-        return this.contactDetails.destroy({
+        return this.ContactDetails.destroy({
             where: {
                 id: id
             }
