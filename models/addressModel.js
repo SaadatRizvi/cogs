@@ -49,7 +49,7 @@ class AddressModel{
                 }));
                 return created;
 
-            })};
+            }).catch(err=>err)};
 
     getAll() {
         return this.Address

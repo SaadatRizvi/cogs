@@ -37,7 +37,7 @@ class DepartmentModel{
                 }));
                 return created;
 
-            })};
+            }).catch(err=>err)};
 
     getAll() {
         return this.Department

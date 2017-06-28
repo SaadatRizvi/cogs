@@ -65,7 +65,9 @@ class ContactModel{
                 }));
                 return created;
 
-            })};
+            })
+            .catch(err=>err)
+    };
 
     getAll() {
         return this.ContactDetails

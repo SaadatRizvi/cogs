@@ -47,16 +47,15 @@ class EmploymentModel{
         delete defaultVals.EmployeeId;
         delete defaultVals.company;
         delete defaultVals.joiningDate;
-
         return this.Employment
-            .findOrCreate({where: {EmployeeId: data.EmployeeId,company:data.company,joiningDate: data.company},defaults: defaultVals})
+            .findOrCreate({where: {EmployeeId: data.EmployeeId,company:data.company,joiningDate: data.joiningDate},defaults: defaultVals})
             .spread((employment, created) => {
                 console.log(employment.get({
                     plain: true
                 }));
                 return created;
 
-            })};
+            }).catch(err=>err)};
 
     getAll() {
         return this.Employment
@@ -70,12 +69,7 @@ class EmploymentModel{
                 return employment;
             })
     };
-    getByName(name){
-        return this.Employment
-            .findOne({where:{name:name}}).then(employment => {
-                return employment;
-            })
-    };
+
     update(data,id) {
         return this.Employment.update(
             data,
@@ -98,15 +92,6 @@ class EmploymentModel{
             {return result;}
         );
     };
-
-    deleteByName(name) {
-        return this.Employment.destroy({
-            where: {
-                name: name
-            }
-        }).then(result => result);
-    }
-
 
 
 }

@@ -84,7 +84,7 @@ class EmployeeModel{
                 }));
                 return created;
 
-            })
+            }).catch(err=>err)
     };
 
     getAll() {

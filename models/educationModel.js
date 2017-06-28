@@ -66,7 +66,7 @@ class EducationModel{
                 }));
                 return created;
 
-            })};
+            }).catch(err=>err)};
 
     getAll() {
         return this.Education

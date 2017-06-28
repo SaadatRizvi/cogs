@@ -57,7 +57,7 @@ class ProjectModel{
                 }));
                 return created;
 
-            })};
+            }).catch(err=>err)};
 
     getAll() {
         return this.Project
@@ -71,12 +71,7 @@ class ProjectModel{
                 return project;
             })
     };
-    getByName(name){
-        return this.Project
-            .findOne({where:{name:name}}).then(project => {
-                return project;
-            })
-    };
+
     update(data,id) {
         return this.Project.update(
             data,
@@ -99,16 +94,6 @@ class ProjectModel{
             {return result;}
         );
     };
-
-    deleteByName(name) {
-        return this.Project.destroy({
-            where: {
-                name: name
-            }
-        }).then(result => result);
-    }
-
-
 
 }
 

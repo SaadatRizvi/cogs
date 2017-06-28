@@ -108,6 +108,7 @@ module.exports=class contactDetailServices{
 
     static update (req,res) {
         return function(req, res) {
+            console.log(req.body)
             let check=true;
             if(req.body.id){
                 res.send({Message: "Remove \'" + req.body.id + "\' from the input json"})
@@ -120,34 +121,35 @@ module.exports=class contactDetailServices{
             if(req.body.passingDate) {
                 if (!module.exports.validator.isDateNS(req.body.passingDate)) {
                     res.send({Message: "Date \'" + req.body.passingDate + "\' not in the correct format"})
+                    check=false;
                 }
-                check=false;
             }
             if(req.body.gpa) {
                 if (!module.exports.validator.isFloat(req.body.gpa)) {
                     res.send({Message: "Gpa \'" + req.body.gpa + "\' not in the correct format"})
+                    check=false;
                 }
-                check=false;
             }
             if(req.body.institute) {
                 if (!module.exports.validator.isAlpha(req.body.institute)) {
                     res.send({Message: "Institute \'" + req.body.institute + "\' not in the correct format"})
+                    check=false;
                 }
-                check=false;
             }
             if(req.body.degree) {
                 if (!module.exports.validator.isAlpha(req.body.degree)) {
                     res.send({Message: "Degree \'" + req.body.degree + "\' not in the correct format"})
+                    check=false;
                 }
-                check=false;
             }
             if(req.body.field) {
                 if(!module.exports.validator.isAlpha(req.body.field)){
                     res.send({Message :"Field \'"+ req.body.field+"\' not in the correct format"})
+                    check=false;
                 }
-                check=false;
             }
-            if(check) {
+            if(check){
+                console.log(req.body)
                 educationModel.update(req.body, req.params.id).then(function (result) {
                     res.send(result)
                 });

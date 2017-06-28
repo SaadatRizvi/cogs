@@ -33,24 +33,9 @@ module.exports=class contactDetailServices{
     static set(req,res) {
         return function (req,res) {
             let check = true;
-            if (req.body.cnic) {
-                if (!module.exports.validator.isInt(req.body.cnic)) {
-                    res.send({Message: "CNIC \'" + req.body.cnic + "\' not in the correct format"})
-                    check=false;
-
-                }
-
-            }
             if (req.body.personalEmail) {
                 if (!module.exports.validator.isEmail(req.body.personalEmail)) {
                     res.send({Message: "Email \'" + req.body.personalEmail + "\' not in the correct format"})
-                    check=false;
-
-                }
-            }
-            if (req.body.skype) {
-                if (!module.exports.validator.isAlpha(req.body.skype)) {
-                    res.send({Message: "Skype Id \'" + req.body.skype + "\' not in the correct format"})
                     check=false;
 
                 }
@@ -135,23 +120,9 @@ module.exports=class contactDetailServices{
                 check=false;
 
             }
-            if (req.body.cnic) {
-                if (!module.exports.validator.isInt(req.body.cnic)) {
-                    res.send({Message: "CNIC \'" + req.body.cnic + "\' not in the correct format"})
-                    check=false;
-
-                }
-            }
             if (req.body.personalEmail) {
                 if (!module.exports.validator.isEmail(req.body.personalEmail)) {
                     res.send({Message: "Email \'" + req.body.personalEmail + "\' not in the correct format"})
-                    check=false;
-
-                }
-            }
-            if (req.body.skype) {
-                if (!module.exports.validator.isAlpha(req.body.skype)) {
-                    res.send({Message: "Skype Id \'" + req.body.skype + "\' not in the correct format"})
                     check=false;
 
                 }
@@ -192,18 +163,6 @@ module.exports=class contactDetailServices{
                 }
             }
 
-            if (!req.body.EmployeeId) {
-                res.send({Message: "Please provide Employee Id"})
-                check=false;
-
-            }
-            else if (req.body.EmployeeId) {
-                if (!module.exports.validator.isInt(req.body.EmployeeId)) {
-                    res.send({Message: "ID \'" + req.params.id + "\' not in the correct format"})
-                    check=false;
-
-                }
-            }
             if(check) {
                 contactDetailModel.update(req.body, req.params.id).then(function (result) {
                     res.send(result)

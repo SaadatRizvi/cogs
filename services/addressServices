@@ -119,18 +119,7 @@ module.exports=class addressServices{
 
                 }
             }
-            if (!req.body.EmployeeId) {
-                res.send({Message: "Please provide Employee Id"})
-                check=false;
 
-            }
-            else if (req.body.EmployeeId) {
-                if (!module.exports.validator.isInt(req.body.EmployeeId)) {
-                    res.send({Message: "ID \'" + req.params.id + "\' not in the correct format"})
-                    check=false;
-
-                }
-            }
             if(check) {
                 addressModel.update(req.body, req.params.id).then(function (result) {
                     res.send(result)
