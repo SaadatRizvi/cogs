@@ -14,16 +14,16 @@ class ProjectModel{
 
         this.Project  = sequelize.define('Projects', {
             name: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             role: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             technologies: {
                 type: Sequelize.STRING
             },
             joiningDate: {
-                type: Sequelize.DATEONLY
+                type: Sequelize.DATEONLY, allowNull: false
             },
             leavingDate: {
                 type: Sequelize.DATEONLY

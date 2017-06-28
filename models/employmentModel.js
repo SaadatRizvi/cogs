@@ -14,16 +14,16 @@ class EmploymentModel{
 
         this.Employment  = sequelize.define('Employments', {
             company: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             title: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING, allowNull: false
             },
             location: {
                 type: Sequelize.STRING
             },
             joiningDate: {
-                type: Sequelize.DATEONLY
+                type: Sequelize.DATEONLY, allowNull: false
             },
             leavingDate: {
                 type: Sequelize.DATEONLY

@@ -16,7 +16,7 @@ class DepartmentModel{
       this.Department  = sequelize.define('Departments', {
 
             name: {
-                type: Sequelize.STRING, unique: true
+                type: Sequelize.STRING, unique: true, allowNull: false
             },
         },{
             timestamps: false,
