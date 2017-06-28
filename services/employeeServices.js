@@ -30,25 +30,68 @@ module.exports=class employeesServices{
         }
     }
 
-    static getByName(req,res) {
-        return function (req,res) {
-            if(!module.exports.validator.isAlpha(req.params.name)){
-                res.send({Message :"Name \'"+ req.params.name+"\' not in the correct format"})
-            }
-            console.log("Entered GET employees")
-            employeesModel.getByID(req.params.name).then(function (result) {
-                console.log("Entered Ended employees")
-                res.send(result)
-            });
-        }
-    }
 
     static set(req,res) {
         return function (req,res) {
+
+            let check = true;
+
+            if(req.body.id) {
+
+                res.send({Message: "Remove the field \' id \' from the request object"})
+                check=false;
+            };
+
+            if(req.body.email) {
+                if (!module.exports.validator.isEmail(req.body.email)) {
+                    res.send({Message: "email \'" + req.body.email + "\' not in the correct format"});
+                    check=false;
+                }
+            }
+
+            if(req.body.joiningDate) {
+                if (!module.exports.validator.isDateNS(req.body.joiningDate)) {
+                    res.send({Message: "joiningDate \'" + req.body.joiningDate + "\' not in the correct format"});
+                    check=false;
+                }
+            }
+
+            if(req.body.lastDate) {
+                if (!module.exports.validator.isDateNS(req.body.lastDate)) {
+                    res.send({Message: "lastDate \'" + req.body.lastDate + "\' not in the correct format"});
+                    check=false;
+                }
+            }
+
+            if(req.body.joiningDate && req.body.lastDate) {
+
+                if (!module.exports.validator.isAfter(req.body.lastDate,req.body.joiningDate)) {
+                    res.send({Message: "Last Date should be after joining Date"})
+                    check=false;
+                }
+            }
+
+            if(req.body.DepartmentId) {
+
+                if (!module.exports.validator.isInt(req.body.DepartmentId)) {
+                    res.send({Message: "DepartmentId \'" + req.body.DepartmentId + "\' not in the correct format"})
+                    check=false;
+                }
+            }
+
+            if(req.body.code) {
+
+                if (!module.exports.validator.isInt(req.body.code)) {
+                    res.send({Message: "code \'" + req.body.code + "\' not in the correct format"})
+                    check=false;
+                }
+            }
+
+            if(check){
             console.log(req.body);
             employeesModel.create(req.body).then(function (result) {
                 res.send(result)
-            });
+            });}
         }
     }
 
@@ -67,16 +110,6 @@ module.exports=class employeesServices{
         }
     }
 
-    static deleteByName (req,res) {
-        return function(req, res) {
-            if (!module.exports.validator.isAlpha(req.params.name)) {
-                res.send({Message: "Name \'" + req.params.name + "\' not in the correct format"})
-            }
-            employeesModel.deleteByName(req.params.name).then(function (result) {
-                res.send(result)
-            });
-        }
-    }
 
     static update (req,res) {
         return function(req, res) {
