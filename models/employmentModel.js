@@ -43,8 +43,13 @@ class EmploymentModel{
     }
 
     create(data){
+        let defaultVals =Object.assign({}, data);
+        delete defaultVals.EmployeeId;
+        delete defaultVals.company;
+        delete defaultVals.joiningDate;
+
         return this.Employment
-            .findOrCreate({where: {EmployeeId: data.EmployeeId}})
+            .findOrCreate({where: {EmployeeId: data.EmployeeId,company:data.company,joiningDate: data.company},defaults: defaultVals})
             .spread((employment, created) => {
                 console.log(employment.get({
                     plain: true

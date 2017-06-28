@@ -35,6 +35,8 @@ projects.construct(bodyParser);
 
 app.use('/departments', departments.router)
 app.use('/employees', employees.router)
+app.use('/employments', employments.router)
+app.use('/projects', projects.router)
 
 app.get("/", function (request,response) {
         response.send('Hello World');

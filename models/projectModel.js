@@ -13,13 +13,13 @@ class ProjectModel{
     constructor(){
 
         this.Project  = sequelize.define('Projects', {
-            company: {
+            name: {
                 type: Sequelize.STRING
             },
-            title: {
+            role: {
                 type: Sequelize.STRING
             },
-            location: {
+            technologies: {
                 type: Sequelize.STRING
             },
             joiningDate: {
@@ -43,8 +43,14 @@ class ProjectModel{
     }
 
     create(data){
+
+        let defaultVals =Object.assign({}, data);
+        delete defaultVals.EmployeeId;
+        delete defaultVals.name;
+        delete defaultVals.role;
+
         return this.Project
-            .findOrCreate({where: {EmployeeId: data.EmployeeId}})
+            .findOrCreate({where: {EmployeeId: data.EmployeeId,name:data.name,role: data.role},defaults: defaultVals})
             .spread((project, created) => {
                 console.log(project.get({
                     plain: true

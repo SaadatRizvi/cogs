@@ -30,18 +30,6 @@ module.exports=class employeesServices{
         }
     }
 
-    static getByName(req,res) {
-        return function (req,res) {
-            if(!module.exports.validator.isAlpha(req.params.name)){
-                res.send({Message :"Name \'"+ req.params.name+"\' not in the correct format"})
-            }
-            console.log("Entered GET employees")
-            employeesModel.getByID(req.params.name).then(function (result) {
-                console.log("Entered Ended employees")
-                res.send(result)
-            });
-        }
-    }
 
     static set(req,res) {
         return function (req,res) {
@@ -67,16 +55,6 @@ module.exports=class employeesServices{
         }
     }
 
-    static deleteByName (req,res) {
-        return function(req, res) {
-            if (!module.exports.validator.isAlpha(req.params.name)) {
-                res.send({Message: "Name \'" + req.params.name + "\' not in the correct format"})
-            }
-            employeesModel.deleteByName(req.params.name).then(function (result) {
-                res.send(result)
-            });
-        }
-    }
 
     static update (req,res) {
         return function(req, res) {

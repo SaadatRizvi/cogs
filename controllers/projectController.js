@@ -19,13 +19,13 @@ module.exports.construct = function (body_parser) {
 
     router.get('/:id',projectsServices.getById());
 
-    router.get('/:name',projectsServices.getByName());
+
 
     router.post('/', projectsServices.set());
 
     router.delete('/:id', projectsServices.deleteById());
 
-    router.delete('/:name', projectsServices.deleteByName());
+
 
     router.put('/:id', projectsServices.update());
 };

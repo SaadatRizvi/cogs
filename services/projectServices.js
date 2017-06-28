@@ -30,18 +30,7 @@ module.exports=class projectsServices{
         }
     }
 
-    static getByName(req,res) {
-        return function (req,res) {
-            if(!module.exports.validator.isAlpha(req.params.name)){
-                res.send({Message :"Name \'"+ req.params.name+"\' not in the correct format"})
-            }
-            console.log("Entered GET projects")
-            projectsModel.getByID(req.params.name).then(function (result) {
-                console.log("Entered Ended projects")
-                res.send(result)
-            });
-        }
-    }
+
 
     static set(req,res) {
         return function (req,res) {
@@ -67,16 +56,7 @@ module.exports=class projectsServices{
         }
     }
 
-    static deleteByName (req,res) {
-        return function(req, res) {
-            if (!module.exports.validator.isAlpha(req.params.name)) {
-                res.send({Message: "Name \'" + req.params.name + "\' not in the correct format"})
-            }
-            projectsModel.deleteByName(req.params.name).then(function (result) {
-                res.send(result)
-            });
-        }
-    }
+
 
     static update (req,res) {
         return function(req, res) {
