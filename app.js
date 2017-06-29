@@ -54,6 +54,21 @@ contactDetail.construct(bodyParser);
 education.validator = validator;
 education.construct(bodyParser);
 
+
+
+// get an instance of the router for api routes
+
+// route to authenticate a user (POST http://localhost:8080/api/authenticate)
+
+
+
+
+
+
+
+
+
+
 app.use('/departments', departments.router);
 app.use('/employees', employees.router);
 app.use('/address', address.router);

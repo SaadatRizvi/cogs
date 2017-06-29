@@ -100,6 +100,11 @@ class EmployeeModel{
             })
     };
 
+    getByEmail(email) {
+        return this.Employee
+            .findOne({where:{email:email}}).then(res => res)
+    }
+
     update(data,id) {
         return this.Employee.update(
             data,
