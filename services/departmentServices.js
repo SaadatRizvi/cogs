@@ -30,6 +30,8 @@ module.exports=class departmentsServices{
         }
     }
 
+
+
     static getByName(req,res) {
         return function (req,res) {
             if(!module.exports.validator.isAlpha(req.params.name)){

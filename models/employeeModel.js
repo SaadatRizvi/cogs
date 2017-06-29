@@ -1,7 +1,7 @@
 'use strict';
 
 
-const db=require('../db');
+const db=require('../configs/db');
 const Sequelize=require('sequelize');
 const departments=require('./departmentModel');
 const sequelize=db.sequelize;
@@ -100,10 +100,21 @@ class EmployeeModel{
             })
     };
 
+
+
+
+
+
     getByEmail(email) {
-        return this.Employee
-            .findOne({where:{email:email}}).then(res => res)
-    }
+        return this.Employee.findOne({where:{email:email}}).then(res => {
+                //console.log(res);
+                return res;
+            })
+            .catch(err =>
+                {//console.log(err);
+                    return err;}
+            )
+    };
 
     update(data,id) {
         return this.Employee.update(

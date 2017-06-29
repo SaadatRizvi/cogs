@@ -1,6 +1,6 @@
 'use strict';
 
-const db=require('../db');
+const db=require('../configs/db');
 const Sequelize=require('sequelize');
 const sequelize=db.sequelize;
 const employee=require('./employeeModel.js').Employee;
