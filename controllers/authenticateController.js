@@ -9,7 +9,7 @@ const employeesModel= require('../models/employeeModel');
 let validator;
 let jwt;
 module.exports.construct = function (body_parser,app) {
-
+ console.log('test');
     validator=module.exports.validator;
     jwt=module.exports.jwt;
 

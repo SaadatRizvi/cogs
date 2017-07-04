@@ -107,7 +107,8 @@ class EmployeeModel{
 
     getByEmail(email) {
         return this.Employee.findOne({where:{email:email}}).then(res => {
-                //console.log(res);
+                console.log(email);
+                console.log(res)
                 return res;
             })
             .catch(err =>

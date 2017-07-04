@@ -24,6 +24,23 @@ function isDate(testDate) {
 
 validator.isDateNS=isDate;
 
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Credentials', 'true')
+    res.header('Access-Control-Allow-Headers', 'Origin,Content-Type, Authorization, Content-Length, X-Requested-With,Accept');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Origin', '*');
+
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    }
+    else {
+        next();
+    }
+
+});
+
+
 app.use(morgan('dev'));
 app.set('superSecret', authConfig.secret); // secret variable
 // parse application/x-www-form-urlencoded
@@ -109,7 +126,13 @@ app.post("/signup", function (req,res){
     });
 })
 */
-app.listen(8089,function () {
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+app.listen(8090,function () {
     console.log('Server has started, listening on port 8089');
 });
 

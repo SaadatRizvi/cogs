@@ -8,7 +8,7 @@ const employeesModel= require('../models/employeeModel');
 let jwt ;
 let app;
 module.exports=function(req, res, next) {
-
+console.log('3434');
     // check header or url parameters or post parameters for token
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
     jwt    = module.exports.jwt;
@@ -33,7 +33,7 @@ module.exports=function(req, res, next) {
         // return an error
         return res.status(403).send({
             success: false,
-            message: 'No token provided.'
+            message: 'No token provided 123.'
         });
 
     }
