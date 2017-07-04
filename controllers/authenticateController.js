@@ -19,7 +19,6 @@ module.exports.construct = function (body_parser,app) {
         employeesModel.getByEmail(req.body.email)
             .then(function (user) {
 
-                console.log(user.password);
 
             if (!user) {
                 res.json({success: false, message: 'Authentication failed. User not found.'});
@@ -33,23 +32,26 @@ module.exports.construct = function (body_parser,app) {
                     // if user is found and password is right
                     // create a token
                     console.log("REACHED");
+                    let dateToday = new Date();
 
-                    let a ={
+                    let userDetails ={
                         email: user.email,
-                        password: user.password
+                        password: user.password,
+                        dateToday: dateToday
                     };
-                    console.log(a);
+                    console.log(userDetails);
 
-                    let token = jwt.sign(a, app.get('superSecret'), {
+                    let token = jwt.sign(userDetails, app.get('superSecret'), {
                         // expiresIn: 60*60*24 // expires in 12 hours
                     });
-                    console.log("REACHED22222222");
 
                     // return the information including token as JSON
                     res.json({
                         success: true,
                         message: 'Enjoy your token!',
-                        token: token
+                        token: token,
+                        id: user.id
+
                     });
 
                 }

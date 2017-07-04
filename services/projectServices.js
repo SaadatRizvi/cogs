@@ -7,15 +7,28 @@ const projectsModel= require('../models/projectModel');
 module.exports=class projectsServices{
 
     static getAll(req,res) {
+
+
+
         return function (req,res) {
-            console.log("Entered GET projects");
-            projectsModel.getAll().then(function (result) {
-                console.log("Entered Ended projects");
-                res.send(result)
-            })
+            if(req.query){
+                console.log(req.query);
+                projectsModel.getByQuery(req.query).then(function (result) {
+                    console.log(result)
+                    res.send(result);
+                })
+            }
+            else{
+                console.log("Entered GET projects");
+                projectsModel.getAll().then(function (result) {
+                    console.log("Entered Ended projects");
+                    res.send(result)
+                })
+            }
         }
 
     }
+
 
     static getById(req,res) {
         return function (req,res) {

@@ -71,7 +71,12 @@ class ProjectModel{
                 return project;
             })
     };
-
+    getByQuery(data){
+        return this.Project
+            .find({where:data}).then(project => {
+                return project;
+            });
+    };
     update(data,id) {
         return this.Project.update(
             data,
