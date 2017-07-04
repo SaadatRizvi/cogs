@@ -69,6 +69,12 @@ class EmploymentModel{
                 return employment;
             })
     };
+    getByQuery(data){
+        return this.Employment
+            .find({where:data}).then(project => {
+                return project;
+            });
+    };
 
     update(data,id) {
         return this.Employment.update(

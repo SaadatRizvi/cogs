@@ -45,6 +45,12 @@ class DepartmentModel{
                 return output;
             });
     };
+    getByQuery(data){
+        return this.Department
+            .find({where:data}).then(project => {
+                return project;
+            });
+    };
     getByID(id){
         return this.Department
             .findById(id).then(department => {

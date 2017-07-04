@@ -80,6 +80,12 @@ class EducationModel{
                 return education;
             })
     };
+    getByQuery(data){
+        return this.Education
+            .find({where:data}).then(project => {
+                return project;
+            });
+    };
     update(data,id) {
         return this.Education.update(
             data,

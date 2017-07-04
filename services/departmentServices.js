@@ -7,16 +7,23 @@ const departmentsModel= require('../models/departmentModel');
 module.exports=class departmentsServices{
 
     static getAll(req,res) {
+
         return function (req,res) {
-            console.log("Entered GET departments");
-            departmentsModel.getAll().then(function (result) {
-                console.log("Entered Ended departments");
-                res.send(result)
-            })
+            if(req.query){
+                console.log(req.query);
+                departmentsModel.getByQuery(req.query).then(function (result) {
+                    console.log(result)
+                    res.send(result);
+                })
+            }
+            else{
+                departmentsModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
         }
 
     }
-
     static getById(req,res) {
         return function (req,res) {
             if(!module.exports.validator.isInt(req.params.id)){

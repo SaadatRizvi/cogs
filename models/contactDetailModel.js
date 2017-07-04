@@ -81,6 +81,12 @@ class ContactModel{
                 return contactDetails;
             })
     };
+    getByQuery(data){
+        return this.ContactDetails
+            .find({where:data}).then(project => {
+                return project;
+            });
+    };
     update(data,id) {
         return this.ContactDetails.update(
             data,

@@ -7,12 +7,20 @@ const employmentsModel= require('../models/employmentModel');
 module.exports=class employmentsServices{
 
     static getAll(req,res) {
+
         return function (req,res) {
-            console.log("Entered GET employments");
-            employmentsModel.getAll().then(function (result) {
-                console.log("Entered Ended employments");
-                res.send(result)
-            })
+            if(req.query){
+                console.log(req.query);
+                employmentsModel.getByQuery(req.query).then(function (result) {
+                    console.log(result)
+                    res.send(result);
+                })
+            }
+            else{
+                employmentsModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
         }
 
     }

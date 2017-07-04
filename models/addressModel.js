@@ -63,6 +63,12 @@ class AddressModel{
                 return address;
             })
     };
+    getByQuery(data){
+        return this.Address
+            .find({where:data}).then(project => {
+                return project;
+            });
+    };
     update(data,id) {
         return this.Address.update(
             data,

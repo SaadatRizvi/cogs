@@ -7,12 +7,20 @@ const contactDetailModel= require('../models/contactDetailModel');
 module.exports=class contactDetailServices{
 
     static getAll(req,res) {
+
         return function (req,res) {
-            console.log("Entered GET contact details");
-            contactDetailModel.getAll().then(function (result) {
-                console.log("Entered Ended contact details");
-                res.send(result)
-            })
+            if(req.query){
+                console.log(req.query);
+                contactDetailModel.getByQuery(req.query).then(function (result) {
+                    console.log(result)
+                    res.send(result);
+                })
+            }
+            else{
+                contactDetailModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
         }
 
     }

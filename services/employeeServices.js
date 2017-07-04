@@ -8,12 +8,20 @@ const jwt=require('jsonwebtoken');
 module.exports=class employeesServices{
 
     static getAll(req,res) {
+
         return function (req,res) {
-            console.log("Entered GET employees");
-            employeesModel.getAll().then(function (result) {
-                console.log("Entered Ended employees");
-                res.send(result)
-            })
+            if(req.query){
+                console.log(req.query);
+                employeesModel.getByQuery(req.query).then(function (result) {
+                    console.log(result)
+                    res.send(result);
+                })
+            }
+            else{
+                employeesModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
         }
 
     }

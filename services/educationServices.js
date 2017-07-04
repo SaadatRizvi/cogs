@@ -6,12 +6,20 @@ const educationModel= require('../models/educationModel');
 module.exports=class contactDetailServices{
 
     static getAll(req,res) {
+
         return function (req,res) {
-            console.log("Entered GET education");
-            educationModel.getAll().then(function (result) {
-                console.log("Entered Ended education");
-                res.send(result)
-            })
+            if(req.query){
+                console.log(req.query);
+                educationModel.getByQuery(req.query).then(function (result) {
+                    console.log(result)
+                    res.send(result);
+                })
+            }
+            else{
+                educationModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
         }
 
     }

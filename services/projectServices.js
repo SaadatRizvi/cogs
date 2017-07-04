@@ -8,9 +8,7 @@ module.exports=class projectsServices{
 
     static getAll(req,res) {
 
-
-
-        return function (req,res) {
+      return function (req,res) {
             if(req.query){
                 console.log(req.query);
                 projectsModel.getByQuery(req.query).then(function (result) {
@@ -19,9 +17,7 @@ module.exports=class projectsServices{
                 })
             }
             else{
-                console.log("Entered GET projects");
                 projectsModel.getAll().then(function (result) {
-                    console.log("Entered Ended projects");
                     res.send(result)
                 })
             }

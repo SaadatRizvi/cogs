@@ -99,7 +99,12 @@ class EmployeeModel{
                 return employee;
             })
     };
-
+    getByQuery(data){
+        return this.Employee
+            .find({where:data}).then(project => {
+                return project;
+            });
+    };
 
 
 

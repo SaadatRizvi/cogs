@@ -7,12 +7,20 @@ const addressModel= require('../models/addressModel');
 module.exports=class addressServices{
 
     static getAll(req,res) {
+
         return function (req,res) {
-            console.log("Entered GET address");
-            addressModel.getAll().then(function (result) {
-                console.log("Entered Ended address");
-                res.send(result)
-            })
+            if(req.query){
+                console.log(req.query);
+                addressModel.getByQuery(req.query).then(function (result) {
+                    console.log(result)
+                    res.send(result);
+                })
+            }
+            else{
+                addressModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
         }
 
     }
