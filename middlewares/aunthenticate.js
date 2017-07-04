@@ -33,7 +33,7 @@ console.log('3434');
         // return an error
         return res.status(403).send({
             success: false,
-            message: 'No token provided 123.'
+            message: 'No token provided.'
         });
 
     }
