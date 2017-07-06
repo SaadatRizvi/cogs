@@ -8,18 +8,19 @@ module.exports=class projectsServices{
 
     static getAll(req,res) {
 
-      return function (req,res) {
-            if(req.query){
+        return function (req,res) {
+            if(Object.keys(req.query).length === 0 && req.query.constructor === Object){
+                projectsModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
+            else{
                 console.log(req.query);
                 projectsModel.getByQuery(req.query).then(function (result) {
                     console.log(result)
                     res.send(result);
                 })
-            }
-            else{
-                projectsModel.getAll().then(function (result) {
-                    res.send(result)
-                })
+
             }
         }
 

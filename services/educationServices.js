@@ -3,22 +3,23 @@
 
 const educationModel= require('../models/educationModel');
 //const validator=module.exports.validator;
-module.exports=class contactDetailServices{
+module.exports=class educationServices{
 
     static getAll(req,res) {
 
         return function (req,res) {
-            if(req.query){
+            if(Object.keys(req.query).length === 0 && req.query.constructor === Object){
+                educationModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
+            else{
                 console.log(req.query);
                 educationModel.getByQuery(req.query).then(function (result) {
                     console.log(result)
                     res.send(result);
                 })
-            }
-            else{
-                educationModel.getAll().then(function (result) {
-                    res.send(result)
-                })
+
             }
         }
 

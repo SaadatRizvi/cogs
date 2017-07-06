@@ -71,7 +71,7 @@ class EmploymentModel{
     };
     getByQuery(data){
         return this.Employment
-            .find({where:data}).then(project => {
+            .findAll({where:data}).then(project => {
                 return project;
             });
     };

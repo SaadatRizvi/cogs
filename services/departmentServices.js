@@ -9,17 +9,18 @@ module.exports=class departmentsServices{
     static getAll(req,res) {
 
         return function (req,res) {
-            if(req.query){
+            if(Object.keys(req.query).length === 0 && req.query.constructor === Object){
+                departmentsModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
+            else{
                 console.log(req.query);
                 departmentsModel.getByQuery(req.query).then(function (result) {
                     console.log(result)
                     res.send(result);
                 })
-            }
-            else{
-                departmentsModel.getAll().then(function (result) {
-                    res.send(result)
-                })
+
             }
         }
 

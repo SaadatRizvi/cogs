@@ -82,7 +82,7 @@ class EducationModel{
     };
     getByQuery(data){
         return this.Education
-            .find({where:data}).then(project => {
+            .findAll({where:data}).then(project => {
                 return project;
             });
     };

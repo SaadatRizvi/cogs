@@ -101,7 +101,7 @@ class EmployeeModel{
     };
     getByQuery(data){
         return this.Employee
-            .find({where:data}).then(project => {
+            .findAll({where:data}).then(project => {
                 return project;
             });
     };

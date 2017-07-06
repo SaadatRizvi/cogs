@@ -9,17 +9,18 @@ module.exports=class employmentsServices{
     static getAll(req,res) {
 
         return function (req,res) {
-            if(req.query){
+            if(Object.keys(req.query).length === 0 && req.query.constructor === Object){
+                employmentsModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
+            else{
                 console.log(req.query);
                 employmentsModel.getByQuery(req.query).then(function (result) {
                     console.log(result)
                     res.send(result);
                 })
-            }
-            else{
-                employmentsModel.getAll().then(function (result) {
-                    res.send(result)
-                })
+
             }
         }
 

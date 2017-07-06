@@ -47,7 +47,9 @@ class AddressModel{
                 console.log(address.get({
                     plain: true
                 }));
-                return created;
+                return address.get({
+                    plain: true
+                });
 
             }).catch(err=>err)};
 
@@ -65,7 +67,7 @@ class AddressModel{
     };
     getByQuery(data){
         return this.Address
-            .find({where:data}).then(project => {
+            .findAll({where:data}).then(project => {
                 return project;
             });
     };

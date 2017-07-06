@@ -73,7 +73,7 @@ class ProjectModel{
     };
     getByQuery(data){
         return this.Project
-            .find({where:data}).then(project => {
+            .findAll({where:data}).then(project => {
                 return project;
             });
     };

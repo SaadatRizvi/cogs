@@ -83,7 +83,7 @@ class ContactModel{
     };
     getByQuery(data){
         return this.ContactDetails
-            .find({where:data}).then(project => {
+            .findAll({where:data}).then(project => {
                 return project;
             });
     };

@@ -9,17 +9,18 @@ module.exports=class contactDetailServices{
     static getAll(req,res) {
 
         return function (req,res) {
-            if(req.query){
+            if(Object.keys(req.query).length === 0 && req.query.constructor === Object){
+                contactDetailModel.getAll().then(function (result) {
+                    res.send(result)
+                })
+            }
+            else{
                 console.log(req.query);
                 contactDetailModel.getByQuery(req.query).then(function (result) {
                     console.log(result)
                     res.send(result);
                 })
-            }
-            else{
-                contactDetailModel.getAll().then(function (result) {
-                    res.send(result)
-                })
+
             }
         }
 
