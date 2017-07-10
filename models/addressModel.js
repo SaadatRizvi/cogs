@@ -44,13 +44,14 @@ class AddressModel{
         return this.Address
             .findOrCreate({where: {EmployeeId: data.EmployeeId,type: data.type},defaults:defaultVals})
             .spread((address, created) => {
-                console.log(address.get({
+                // console.log(address.get({
+                //     plain: true
+                // }));
+                let returnObj=Object.assign({created: created},address.get({
                     plain: true
                 }));
-                return address.get({
-                    plain: true
-                });
-
+                console.log(returnObj);
+                 return returnObj
             }).catch(err=>err)};
 
     getAll() {
