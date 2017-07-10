@@ -64,7 +64,7 @@ module.exports=class contactDetailServices{
                 }
             }
             if (req.body.emergencyName) {
-                if (!module.exports.validator.isAlpha(req.body.emergencyName)) {
+                if (!module.exports.validator.isAscii(req.body.emergencyName)) {
                     res.send({Message: "Emergency name \'" + req.body.emergencyName + "\' not in the correct format"})
                     check=false;
 
@@ -151,7 +151,7 @@ module.exports=class contactDetailServices{
                 }
             }
             if (req.body.emergencyName) {
-                if (!module.exports.validator.isAlpha(req.body.emergencyName)) {
+                if (!module.exports.validator.isAscii(req.body.emergencyName)) {
                     res.send({Message: "Emergency name \'" + req.body.emergencyName + "\' not in the correct format"})
                     check=false;
 

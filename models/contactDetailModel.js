@@ -63,8 +63,10 @@ class ContactModel{
                 console.log(contactDetails.get({
                     plain: true
                 }));
-                return created;
-
+                let returnObj=Object.assign({created: created},contactDetails.get({
+                    plain: true
+                }));
+                return returnObj
             })
             .catch(err=>err)
     };

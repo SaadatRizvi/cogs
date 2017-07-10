@@ -17,7 +17,6 @@ module.exports=class employmentsServices{
             else{
                 console.log(req.query);
                 employmentsModel.getByQuery(req.query).then(function (result) {
-                    console.log(result)
                     res.send(result);
                 })
 
@@ -89,6 +88,7 @@ module.exports=class employmentsServices{
             if(check){
             console.log(req.body);
             employmentsModel.create(req.body).then(function (result) {
+                console.log('Result ===== '+ result);
                 res.send(result)
             });}
         }

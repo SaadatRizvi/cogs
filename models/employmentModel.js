@@ -50,11 +50,14 @@ class EmploymentModel{
         return this.Employment
             .findOrCreate({where: {EmployeeId: data.EmployeeId,company:data.company,joiningDate: data.joiningDate},defaults: defaultVals})
             .spread((employment, created) => {
-                console.log(employment.get({
+                // console.log(address.get({
+                //     plain: true
+                // }));
+                let returnObj=Object.assign({created: created},employment.get({
                     plain: true
                 }));
-                return created;
-
+                console.log('Return OBJ: '+returnObj);
+                return returnObj
             }).catch(err=>err)};
 
     getAll() {

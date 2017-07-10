@@ -75,7 +75,6 @@ module.exports=class addressServices{
                 }
             }
             if(check) {
-                // console.log(req.body);
                 addressModel.create(req.body).then(function (result) {
                     res.send(result)
                 });
