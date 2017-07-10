@@ -125,14 +125,6 @@ module.exports=class projectsServices{
                 res.send({Message :"ID \'"+ req.params.id+"\' not in the correct format"})
                 check=false;
             }
-
-            if(req.body.id) {
-                res.send({Message: "Remove the field \' id \' from the request object"})
-                check=false;
-            };
-
-
-
             if(req.body.role) {
                 if (!module.exports.validator.isAlpha(req.body.role)) {
                     res.send({Message: "Name \'" + req.body.role + "\' not in the correct format"});

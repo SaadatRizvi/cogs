@@ -55,8 +55,11 @@ class ProjectModel{
                 console.log(project.get({
                     plain: true
                 }));
-                return created;
-
+                let returnObj=Object.assign({created: created},project.get({
+                    plain: true
+                }));
+                console.log(returnObj);
+                return returnObj
             }).catch(err=>err)};
 
     getAll() {

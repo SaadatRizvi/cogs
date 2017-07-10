@@ -64,8 +64,11 @@ class EducationModel{
                 console.log(education.get({
                     plain: true
                 }));
-                return created;
-
+                let returnObj=Object.assign({created: created},education.get({
+                    plain: true
+                }));
+                console.log(returnObj);
+                return returnObj
             }).catch(err=>err)};
 
     getAll() {

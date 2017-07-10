@@ -61,14 +61,14 @@ module.exports=class educationServices{
                 }
             }
             if(req.body.institute) {
-                if (!module.exports.validator.isAlpha(req.body.institute)) {
+                if (!module.exports.validator.isAscii(req.body.institute)) {
                     res.send({Message: "Institute \'" + req.body.institute + "\' not in the correct format"})
                     check=false;
 
                 }
             }
             if(req.body.degree) {
-                if (!module.exports.validator.isAlpha(req.body.degree)) {
+                if (!module.exports.validator.isAscii(req.body.degree)) {
                     res.send({Message: "Degree \'" + req.body.degree + "\' not in the correct format"})
                     check=false;
 
@@ -119,10 +119,6 @@ module.exports=class educationServices{
         return function(req, res) {
             console.log(req.body)
             let check=true;
-            if(req.body.id){
-                res.send({Message: "Remove \'" + req.body.id + "\' from the input json"})
-                check=false;
-            }
             if(!module.exports.validator.isInt(req.params.id)){
                 res.send({Message :"ID \'"+ req.params.id+"\' not in the correct format"})
                 check=false;
@@ -140,19 +136,19 @@ module.exports=class educationServices{
                 }
             }
             if(req.body.institute) {
-                if (!module.exports.validator.isAlpha(req.body.institute)) {
+                if (!module.exports.validator.isAscii(req.body.institute)) {
                     res.send({Message: "Institute \'" + req.body.institute + "\' not in the correct format"})
                     check=false;
                 }
             }
             if(req.body.degree) {
-                if (!module.exports.validator.isAlpha(req.body.degree)) {
+                if (!module.exports.validator.isAscii(req.body.degree)) {
                     res.send({Message: "Degree \'" + req.body.degree + "\' not in the correct format"})
                     check=false;
                 }
             }
             if(req.body.field) {
-                if(!module.exports.validator.isAlpha(req.body.field)){
+                if(!module.exports.validator.isAscii(req.body.field)){
                     res.send({Message :"Field \'"+ req.body.field+"\' not in the correct format"})
                     check=false;
                 }
